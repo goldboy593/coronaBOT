@@ -6939,14 +6939,13 @@ texto = 0
 #utilizar para teste
 @app.route("/")
 def hello():
-    return "Hello, World!"
+    return "Hello, Word!"
 
 @app.route("/sms", methods=['POST'])
 
 def sms_reply():
     global texto
-
-        
+  
     # msg recebe a mensagem
     msg = request.values.get('Body', '').lower()
 
@@ -6954,28 +6953,51 @@ def sms_reply():
     resp = MessagingResponse()
 
     info = ['*1.* Coronavírus é uma família de vírus que causam infecções respiratórias. O novo agente do coronavírus foi descoberto em 31/12/19 após casos registrados na China. Provoca a doença chamada de COVID-19.', '*2.* Os sintomas da COVID-19 são semelhantes aos de uma gripe. Entre eles estão a febre, a tosse, dificuldades respiratórias e, em alguns casos, cansaço, dores no corpo, dor de garganta e corrimento nasal. Os sintomas se agravam de forma gradual, e muitas vezes são leves. Em certos casos, principalmente quando o infectado pertence a um grupo de risco, pode ser mais grave, levando inclusive à morte.', '*3.* Realize nosso teste (baseado em testes oficiais do Ministério da Saúde) para saber sua situação e o que deve ser feito. Para contato direto com autoridades da saúde, disque 136 para receber informações do Ministério da Saúde. Em caso de suspeita, FIQUE EM CASA. O isolamento social protege você e as outras pessoas.', '*4.* Período de incubação é o tempo que leva para os primeiros sintomasaparecerem desde a infecção por coronavírus, que pode ser de 2 a 14 dias.' ,'*5.* Através do contato com pessoas infectadas, podendo ser transmitido via apertos de mão, gotículas de saliva expelidas com a fala, espirros, tosse, catarro e objetos e superfícies contaminados. Não há dados que comprovem a transmissão via animais de estimação e importação de produtos vindos da China ou de qualquer outro país contaminado.', '*6.* As diferenças entre o novo coronavírus e outras síndromes gripais são bem sutis. A principal delas é que a COVID-19 causa falta de ar e demais problemas respiratórios com maior frequência que um resfriado ou uma gripe. Para maisinformações, acesse o site https://coronavirus.saude.gov.br/sobre-a-doenca, do Ministério da Saúde, e veja a sessão “Comparativo de doenças”.', '*7.* No momento, ainda não há remédio ou vacina para a COVID-19. Para se prevenir, são recomendados o isolamento social e as medidas básicas de higienização. Aos infectados, é recomendado fazer tratamento dos sintomas e permanecer em repouso e isolamento social, em casos leves. Pacientes com sintomas mais intensos devem ser hospitalizados.', '*8.* As pessoas mais vulneráveis à COVID-19 pertencem ao chamado grupo de risco. Entre elas estão idosos (mais de 60 anos), pessoas com imunidade baixa (quem está se recuperando de uma cirurgia ou alguém com aids, por exemplo), diabéticos, pessoas com problemas respiratórios, hipertensos e pessoas com problemas crônicos renais.', '*9.* Não através do contato físico. Existe, sim, a possibilidade da contaminação através da carne, mas basta cozinhar bem a carne para se prevenir. Não é preciso se preocupar com animais de estimação', '*10.* No momento, a medida mais importante de prevenção ao coronavírus é o isolamento social. Ficar em casa ajuda muito a diminuir a propagação. Dentro de casa, as medidas de prevenção são simples: não compartilhar objetos pessoais, lavar frequentemente as mãos com sabão, higienizar objetos pessoais, cobrir o rosto como braço ou com um lenço ao espirrar ou tossir. O melhor jeito e lavar a mão é conforme a imagem a seguir:\n Caso seja extremamente necessário sair de casa, mantenha uma distância mínima de 1,5m em relação a qualquer pessoa e evite aglomerações. Ao chegar em casa, higienize as mãos e troque de roupa. Até o momento, o uso de máscaras é recomendado apenas para quem pertence ao grupo de risco (idosos, diabéticos, hipertensos, pessoas que sofrem de alguma doença crônica ou que prejudique o sistema imunológico). Máscaras caseiras podem ser feitas e utilizadas, embora na maioria dos casos seu uso não previna o contágio, apenasa transmissão.']
-    presentar = '\U00002139  Digite "informações" ou 1 para saber informações conhecidas até agora sobre o COVID-19. Se quiser, após pedir as informações digite "mais" ou 2, e serão enviados links para sites oficiais e confiáveis com mais conteúdo relacionado à COVID-19.\n\n \U0001F4CB	Digite "teste" ou 3 para fazer um teste semelhante ao aplicado no site do ministério da saúde para avaliar a possibilidade de você estar infectado.\n\n \U00002705 Por último, se você deseja confirmar alguma afirmação que te fizeram sobre o COVID-19, digite "Confirmar" ou 4 e envie, então mande outra mensagem com a afirmação que você deseja confirmar, como "o COVID-19 se espalha pelo ar" e te direi se posso confirmar essa afirmação ou ela não é conhecida e verificada por mim'
+    presentar = '\U00002139  Digite "informações" ou 1 para saber informações conhecidas até agora sobre o COVID-19. Se quiser, após pedir as informações digite "mais" ou 2, e serão enviados links para sites oficiais e confiáveis com mais conteúdo relacionado à COVID-19.\n\n \U0001F4CB	Digite "teste" ou 3 para fazer um teste semelhante ao aplicado no site do ministério da saúde para avaliar a possibilidade de você estar infectado.\n\n \U00002705 Por último, se você deseja confirmar alguma afirmação que te fizeram sobre o COVID-19, digite "Confirmar" ou 4 e envie, então mande outra mensagem com a afirmação que você deseja confirmar, como "o COVID-19 se espalha pelo ar" e te direi se posso confirmar essa afirmação ou ela não é conhecida e verificada por mim, esta opção ainda está em desenvolvimento, e não posso garantir que estará disponível em todos os momentos.'
     terminarteste = 'Teste concluído, digite seu próximo comando, ou me mande um "oi" para eu te enviar novamente a lista de comandos.'
 
     def comparador(afirmacao, verdade):
-        if nao not in afirmacao and nao not in verdade:
+        if str(nao) not in str(afirmacao) and str(nao) not in str(verdade):
             for i in afirmacao:
-                if i in string2:
+                if i in verdade:
                     a = True
-                if i not in string2:
+                if i not in verdade:
                     a = False
+                    break
             return a
         else:
-            if afirmacao == verdade:
+            if str(afirmacao) == str(verdade):
                 return true
-            if afirmacao != verdade:
+            if str(afirmacao) != str(verdade):
                 return false
 
 
 
-    
+    if msg in str(oi):
+        resp.message("Oi, eu sou o CoronaBOT! \U0001F9A0 \U0001F916")
+        resp.message(presentar)
+        texto == 1
+
+    elif msg in str(teste):
+        resp.message("Lembre: Está é uma ferramenta de auxílio que não substitui um diagnóstico médico profissional.")
+        resp.message("Você apresentou mais de 37,8° de febre?")
+        texto = 2
+
+    elif msg == str(".sadsdasdashdbqwhbsndjnqkmkemunsdunasdjmnqkemwksmdkandbnqwyjsdnmanmdnquwuysdajdnmasndjqwnydsbna"):
+        resp.message("Você selecionou confirmar, uma fução ainda em desenvolvimento, me envie a afimarção que você deseja confimar!")
+        texto = 0.5
+
+    elif texto == 0.5:
+        if comparador(msg, str(verdade).lower()) == True:
+            resp.message("Está informação está em meu banco de dados. Concordo com ela!")
+            texto == 1
+        else:
+            resp.message('Infelizmente não posso afirmar se essa afirmação é verdade, ainda estou aprendendo muitas coisas, então pode ser um erro meu, mas recomendo que você pesquise mais sobre está informação. Você pode por exemplo, me mandar a palavra "Informação" para eu te dizer algumas das coisas que eu sei sobre o COVID-19')
+            texto == 1
+
+        
     #Informações
-    if msg in informacoes:
+    elif msg in str(informacoes):
         resp.message("Tenho informações para responder às seguintes perguntas, digite o número da pergunta para eu te dar a resposta:\n\n*1.* O que é o corona vírus?/O que é a covid-19? /O que é o novo corona vírus?\n\n*2.* Quais são os sintomas?/ Quais são os sintomas do coronavírus?/ Sintomas?/ Corona vírus mata\n\n*3.* Acho que tenho COVID-19, o que faço?/ O que fazer em caso de suspeita de contaminação?\n\n*4.* Qual é o tempo de incubação do vírus?/ Quanto tempo demora para que os sintomas de manifestem?\n\n*5.* Como o COVID-19 é transmitido?\n\n*6.* Qual é a diferença entre a gripe e a COVID-19?\n\n*7.* Existe vacina para a COVID-19?\n\n*8.* Qual é o grupo de risco?/ Sou do grupo de risco? Idosos/crianças/diabéticos são mais vulneráveis?\n\n*9.* Animais podem transmitir coronavírus?\n\n*10.* Como posso me proteger?/ Quais são as medidas de proteção?/ Isolamento social é necessário?")
         texto = 1.1
         
@@ -6986,32 +7008,17 @@ def sms_reply():
             resp.message("").media('https://gizmodo.uol.com.br/wp-content/blogs.dir/8/files/2016/04/lavar-maos-oms.png')
         texto = 1
         resp.message('Informação concluída, digite, outro comando para ter acesso a outra informação, se desejar a resposta de mais uma pergunta, me envie "informações" e depois o número da nova pergunta')
-
-
-    elif msg in confirmar:
-        resp.message("Você selecionou confirmar, agora me envie a afimarção que você deseja confimar!")
-        texto = 0.5
-
-    elif texto == 0.5:
-        if comparador(msg, verdade) == true:
-            resp.message("Está informação está em meu banco de dados. Concordo com ela!")
-        else:
-            resp.message('Infelizmente não posso afirmar se essa afirmação é verdade, ainda estou aprendendo muitas coisas, então pode ser um erro meu, mas recomendo que você pesquise mais sobre está informação. Você pode por exemplo, me mandar a palavra "Informação" para eu te dizer algumas das coisas que eu sei sobre o COVID-19')
         
-    elif msg in mais:
-        respond.message("Você selecionou a opção mais informações, te manderei alguns links com ótimas informações sobre o COVID-19")
+    elif msg in str(mais):
+        resp.message("Você selecionou a opção mais informações, te manderei alguns links com ótimas informações sobre o COVID-19")
         texto = 1
-        respon.message("Portal sobre coronavírus do Ministério da Saúde: https://coronavirus.saude.gov.br/\n\nPara baixar o aplicativo de celular oficial do SUS sobre o Coronavirus: https://coronavirus.saude.gov.br/sobre-a-doenca#aplicativo\n\nRastreador de COVID-19 do Bing, com dados em tempo real do mundo todo: https://www.bing.com/covid\n\nPainel da Secretaria de Saúde do Estado do RJ, com monitoramento em tempo real da COVID-19 no estado todo e por município: http://painel.saude.rj.gov.br/monitoramento/covid19.html\n\nVerificação de notícias sobre a COVID-19 feita pelo Ministério da Saúde: https://www.saude.gov.br/fakenews\n\nLink do Google Maps que permite a visualização de todas as UBS (Unidades Básicas de Saúde) no mapa, facilitando para você achar a que fica mais próxima da sua casa: http://w.tnh.health/l/ubs'")
-        respond.message('Bom proveito de toda essa informção! Agora você pode digitar outro comando, ou me mandar um "oi" para eu te enviar novamente todos os meus comandos')
-        
-    elif msg in oi:
-        resp.message("Oi, eu sou o CoronaBOT! \U0001F9A0 \U0001F916")
-        resp.message(presentar)
+        resp.message("Portal sobre coronavírus do Ministério da Saúde: https://coronavirus.saude.gov.br/\n\nPara baixar o aplicativo de celular oficial do SUS sobre o Coronavirus: https://coronavirus.saude.gov.br/sobre-a-doenca#aplicativo\n\nRastreador de COVID-19 do Bing, com dados em tempo real do mundo todo: https://www.bing.com/covid\n\nPainel da Secretaria de Saúde do Estado do RJ, com monitoramento em tempo real da COVID-19 no estado todo e por município: http://painel.saude.rj.gov.br/monitoramento/covid19.html\n\nVerificação de notícias sobre a COVID-19 feita pelo Ministério da Saúde: https://www.saude.gov.br/fakenews\n\nLink do Google Maps que permite a visualização de todas as UBS (Unidades Básicas de Saúde) no mapa, facilitando para você achar a que fica mais próxima da sua casa: http://w.tnh.health/l/ubs'")
+        resp.message('Bom proveito de toda essa informção! Agora você pode digitar outro comando, ou me mandar um "oi" para eu te enviar novamente todos os meus comandos')
 
-    elif msg in xingamento:
+    elif msg in str(xingamento):
         resp.message("poxa, desculpe se te incomodei, me envie a palavra sugestão e depois me mande sugestão para eu poder melhorar ;)")
 
-    elif msg in sugestao:
+    elif msg in str(sugestao):
        resp.message("obrigado pela sugestão!!")
 
 #apresentação inicial
@@ -7024,11 +7031,6 @@ def sms_reply():
 
 #====TESTE COMEÇA====
     
-
-    elif msg in teste:
-        resp.message("Lembre: Está é uma ferramenta de auxílio que não substitui um diagnóstico médico profissional.")
-        resp.message("Você apresentou mais de 37,8° de febre?")
-        texto = 2
 
     #ponta fechada
     elif msg in nao and texto == 2:
@@ -7110,7 +7112,9 @@ def sms_reply():
 
 #====FIM DO TESTE====
 
-
+    elif texto >= 2:
+        resp.message("Desculpe, não consigo entender essa resposta para minha pergunta do teste. Você poderia me enviar de novo?")
+        resp.message(presentar)
     
 #====FIM DE TUDO SOBRE O TESTE
 
